@@ -6,3 +6,9 @@
 <p>year: <%= movie.Year %>, rated <%= movie.Rated %></p>
 
 <p>Summary: <%= movie.Plot %></p>
+
+<form method="POST" action="/faves">
+    <input hidden value="<%= movie.Title %>" name="title" />
+    <input hidden value="<%= movie.imdbID %>" name="imdbID"/>
+    <button type="submit">Add to faves</button>
+</form>

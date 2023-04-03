@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const ejsLayouts = require('express-ejs-layouts');
 const axios = require('axios')
+const db = require('./models')
 const app = express();
 
 // Sets EJS as the view engine
@@ -52,6 +53,30 @@ app.get("/movies/:movie_id", (req, res) => {
       res.status(500).send("Server had an error")
     })
 
+})
+
+// POST /faves - CREATE a new fave
+app.post("/faves", async (req, res) => {
+  try {
+    await db.fave.findOrCreate({
+      where: req.body
+    })
+    res.redirect('/faves')
+  } catch(err) {
+    console.log(err)
+    res.status(500).send("Server had an error")
+  }
+})
+
+// GET /faves -- show the user all their faves
+app.get("/faves", async (req, res) => {
+  try {
+    const allFaves = await db.fave.findAll()
+    res.render("faves.ejs", { allFaves })
+  } catch(err) {
+    console.log(err)
+    res.status(500).send("Server had an error")
+  }
 })
 
 // The app.listen function returns a server handle

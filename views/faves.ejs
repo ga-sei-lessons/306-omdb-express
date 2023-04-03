@@ -1,0 +1,9 @@
+<h1>Your Faves:</h1>
+
+<% allFaves.forEach(fave => { %>
+    <p>
+        <a
+            href="/movies/<%= fave.imdbID %>"
+        ><%= fave.title %></a>
+    </p>
+<% }) %>

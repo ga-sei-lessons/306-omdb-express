@@ -8,7 +8,10 @@
 1. Install the new node modules needed for database access.
 2. Initialize sequelize for this project.
 3. Update the config file and create a database named `omdb`.
-4. Create a `fave` model with two fields- `title:string` and `imdbid:string`
+4. Create a `fave` model with two fields- `title:string` and `imdbID:string`
+
+sequelize model:create --name fave --attributes title:string,imdbID:string
+
 5. Run migrations.
 6. Require your model into the location of your routes.
 7. Modify your `detail.ejs` to include a form for adding this movie as a fave:
